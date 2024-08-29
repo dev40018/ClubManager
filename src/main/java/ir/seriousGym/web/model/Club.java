@@ -2,6 +2,9 @@ package ir.seriousGym.web.model;
 
 import java.time.LocalDateTime;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,6 +29,8 @@ public class Club {
   private String title;
   private String photoUrl;
   private String content;
+  @CreationTimestamp 
   private LocalDateTime createdOn;
+  @UpdateTimestamp
   private LocalDateTime updateOn;
 }
