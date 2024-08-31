@@ -71,3 +71,7 @@ https://justgokus.medium.com/step-into-mvc-front-controller-design-pattern-9589e
 
 ## Spring Initlizer
 https://amirmv2006.medium.com/spring-initializr-and-continuous-generation-3d9516865763
+
+## Repostiory Pattern and N-Tier Arch
+rep pattern is an abstraction layer for just communication with DB and lets you only works with Objects of that DB  
+not working with that DB which it provides with CRUD functionality
