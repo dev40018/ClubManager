@@ -7,6 +7,7 @@ import java.util.List;
 import ir.seriousGym.web.dto.ClubDto;
 
 
+
 public interface ClubService {
   List<ClubDto> findAllClubs();
 }

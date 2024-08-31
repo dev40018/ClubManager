@@ -83,3 +83,7 @@ and service only works with DB object while DTO is not DB object it just transfe
 with its own format.  
 sometimes you don't want to send some DB fields to the User Response and just sending specific 
 stuff
+
+> Think about `Sealed interfaces` 
+
+> think about specifying base url with `@RequestMapping("url")`
