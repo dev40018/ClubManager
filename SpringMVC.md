@@ -74,4 +74,12 @@ https://amirmv2006.medium.com/spring-initializr-and-continuous-generation-3d9516
 
 ## Repostiory Pattern and N-Tier Arch
 rep pattern is an abstraction layer for just communication with DB and lets you only works with Objects of that DB  
-not working with that DB which it provides with CRUD functionality
+not working with that DB which it provides with CRUD functionality  
+[anti-Repostiry](https://www.linkedin.com/pulse/repository-pattern-stupid-here-why-abdulrahman-fani-bu0vf)
+
+## DTO
+an Object which is transfered between Contorller and the user and the service  
+and service only works with DB object while DTO is not DB object it just transfer it  
+with its own format.  
+sometimes you don't want to send some DB fields to the User Response and just sending specific 
+stuff
