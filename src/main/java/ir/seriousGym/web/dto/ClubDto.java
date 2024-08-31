@@ -2,6 +2,11 @@ package ir.seriousGym.web.dto;
 
 import java.time.LocalDateTime;
 
+import lombok.Builder;
+import lombok.Data;
+
+@Data
+@Builder
 public class ClubDto {
 
   private Long id;
@@ -10,5 +15,5 @@ public class ClubDto {
   private String content;
   private LocalDateTime createdOn;
   private LocalDateTime updateOn;
-  
+
 }
