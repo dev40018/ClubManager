@@ -21,12 +21,15 @@ public class ClubServiceImpl implements ClubService {
   }
 
   // must change the method visibility to public for OverRiding
+  @Override
   public List<ClubDto> findAllClubs(){
     List<Club> clubs = clubRepo.findAll();
     return clubs.stream()
     .map(club -> mapToClubDto(club)).collect(Collectors.toList());
   }
 
+
+  // -- Mappers 
   private ClubDto mapToClubDto(Club club){
     ClubDto clubDto = ClubDto.builder()
     .id(club.getId())
@@ -37,5 +40,23 @@ public class ClubServiceImpl implements ClubService {
     .updateOn(club.getUpdateOn())
     .build();
     return clubDto;
+  }
+
+  private Club mapToClub(ClubDto clubDto){
+    Club club = Club.builder()
+    .id(clubDto.getId())
+    .title(clubDto.getTitle())
+    .photoUrl(clubDto.getPhotoUrl())
+    .content(clubDto.getContent())
+    .createdOn(clubDto.getCreatedOn())
+    .updateOn(clubDto.getUpdateOn())
+    .build();
+    return club;
+  }
+    // -- Mappers 
+
+  @Override
+  public Club saveClub(Club club) {
+    return clubRepo.save(club);
   }
 }

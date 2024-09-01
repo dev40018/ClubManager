@@ -87,3 +87,5 @@ stuff
 > Think about `Sealed interfaces` 
 
 > think about specifying base url with `@RequestMapping("url")`
+
+turning FORM into JSON

@@ -8,7 +8,34 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+
+  <style>
+    * {
+      font-family: "Inter";
+    }
+
+    img {
+      width: 360px;
+    }
+
+    .clubs-container {
+      display: grid;
+      justify-content: space-evenly;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .club-card {
+      padding: 20px;
+      border: 2px solid grey;
+      border-radius: 10px;
+      margin: 10px;
+      width: 700px;
+    }
+  </style>
+
 </head>
+
+
 
 <body>
 
@@ -16,12 +43,13 @@
 
 
   <section layout:fragment="body">
-    <h1>Hi thert</h1>
+    <h1>Clubs</h1>
 
     <div class="clubs-container">
       <div th:each="club : ${clubs}" class="club-card">
         <img th:src="${club.photoUrl}" alt="" class="Club">
         <a th:text="${club.title}" href=""></a>
+        <p th:text="${club.content}"></p>
       </div>
     </div>
 

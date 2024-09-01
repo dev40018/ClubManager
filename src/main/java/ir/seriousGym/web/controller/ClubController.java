@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import ir.seriousGym.web.dto.ClubDto;
+import ir.seriousGym.web.model.Club;
 import ir.seriousGym.web.service.ClubService;
 
 //@RestController its Only For RestAPI, doesn't works with views
@@ -25,6 +28,19 @@ public class ClubController {
     List<ClubDto> clubs = clubService.findAllClubs();
     model.addAttribute("clubs", clubs);
     return "clubs-list";
+  }
+
+  @GetMapping("/clubs/new")
+  public String createClubForm(Model model){
+    Club club = new Club();
+    model.addAttribute("club", club);
+    return "create-clubs";
+  }
+
+  @PostMapping("/clubs/new")
+  public String saveClub(@ModelAttribute("club") Club club){
+    clubService.saveClub(club);
+    return "redirect:/clubs";
   }
   
 }
