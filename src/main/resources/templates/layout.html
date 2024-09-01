@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" th:href="@{../static/css/styles.css}">
+
+  <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">RunGroup</title>
+</head>
+
+<nav>
+  <ul>
+    <li>Home</li>
+    <li>About</li>
+    <li>Projects</li>
+    <li>Contact</li>
+    <li>Login</li>
+    <li>Register</li>
+  </ul>
+</nav>
+
+<body layout:fragment="body"></body>
+
+</html>

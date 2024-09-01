@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
 
-<!--xmlns:th="https://www.thymeleaf.org/"-->
+
 
 <head>
   <meta charset="UTF-8">
@@ -11,17 +12,11 @@
 
 <body>
 
-  <h1>Hi</h1>
 
-  <head>
-    <nav>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-      </ul>
-    </nav>
-  </head>
-  <section>
+
+
+  <section layout:fragment="body">
+    <h1>Hi thert</h1>
 
     <div class="clubs-container">
       <div th:each="club : ${clubs}" class="club-card">
