@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clubs-detail</title>
+
+  <style>
+    img {
+      width: 450px;
+      height: 260px;
+    }
+
+    .text-center {
+      text-align: center;
+      margin: 130px
+    }
+
+    .main-section-container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      margin: 130px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <section layout:fragment="body">
+    <header>
+      <div class="header-container">
+        <div class="text-center">
+          <h1 th:text="${club.title}"></h1>
+          <p>Welcome to This Club.</p>
+        </div>
+      </div>
+    </header>
+    <div class="main-section-container">
+      <a href=""><img th:src="${club.photoUrl}" alt=""></a>
+      <div class="clubDetail-container">
+        <div th:text="${club.createdOn}"></div>
+        <h3>About This Running Club:</h3>
+        <p th:text="${club.content}"></p>
+        <a class="btn" href="">Delete</a>
+      </div>
+    </div>
+
+    <div class="Event-Container">
+      <h2>Events:</h2>
+      <div class="card-container">
+
+      </div>
+
+    </div>
+
+  </section>
+
+</body>
+
+</html>

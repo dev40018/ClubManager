@@ -89,3 +89,5 @@ stuff
 > think about specifying base url with `@RequestMapping("url")`
 
 turning FORM into JSON
+
+## List/Detail Pattern
