@@ -46,7 +46,7 @@
         <div th:text="${club.createdOn}"></div>
         <h3>About This Running Club:</h3>
         <p th:text="${club.content}"></p>
-        <a class="btn" href="">Delete</a>
+        <a class="btn" th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}">Delete</a>
       </div>
     </div>
 
