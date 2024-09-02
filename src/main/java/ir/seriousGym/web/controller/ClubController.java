@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ir.seriousGym.web.dto.ClubDto;
 import ir.seriousGym.web.model.Club;
 import ir.seriousGym.web.service.ClubService;
+import jakarta.validation.Valid;
 
 //@RestController its Only For RestAPI, doesn't works with views
 @Controller
@@ -51,8 +53,13 @@ public class ClubController {
     return "clubs-edit";
   }
   @PostMapping("/clubs/{clubId}/edit")
+  //@Valid would trigger constraints that exists in ClubDto
   public String updateClub(@PathVariable("clubId") long clubId,
-   @ModelAttribute("club") ClubDto clubDto){
+   @Valid @ModelAttribute("club") ClubDto clubDto,
+   BindingResult result){
+    if(result.hasErrors()){
+      return "clubs-edit";
+    }
     clubDto.setId(clubId);
     clubService.updateClub(clubDto);
     return "redirect:/clubs";
