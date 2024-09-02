@@ -41,8 +41,14 @@ public class ClubController {
   }
 
   @PostMapping("/clubs/new")
-  public String saveClub(@ModelAttribute("club") Club club){
-    clubService.saveClub(club);
+  public String saveClub(@Valid @ModelAttribute("club") ClubDto clubDto,
+  BindingResult result,
+  Model model){
+    if(result.hasErrors()){
+      model.addAttribute("club", clubDto);
+      return "create-clubs";
+    }
+    clubService.saveClub(clubDto);
     return "redirect:/clubs";
   }
 
