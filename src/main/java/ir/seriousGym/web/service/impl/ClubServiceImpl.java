@@ -59,4 +59,18 @@ public class ClubServiceImpl implements ClubService {
   public Club saveClub(Club club) {
     return clubRepo.save(club);
   }
+
+  @Override
+  public ClubDto findClubById(long clubId) {
+    Club club = clubRepo.findById(clubId).get();
+    // in here get() method only return Club object
+    // if you don't use it, will return Optional
+    return mapToClubDto(club);
+  }
+
+  @Override
+  public void updateClub(ClubDto clubDto) {
+    Club club = mapToClub(clubDto);
+    clubRepo.save(club);
+  }
 }

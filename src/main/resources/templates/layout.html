@@ -4,19 +4,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" th:href="@{../static/css/styles.css}">
+  <link rel="stylesheet" th:href="@{/css/styles.css}">
 
   <title layout:title-pattern="$CONTENT_TITLE - $LAYOUT_TITLE">RunGroup</title>
+
 </head>
 
 <nav>
   <ul>
-    <li>Home</li>
+    <li><a th:href="@{/clubs}">Home</a></li>
     <li><a th:href="@{clubs/new}">Create</a></li>
-    <li>Projects</li>
-    <li>Contact</li>
-    <li>Login</li>
-    <li>Register</li>
+    <li><a th:href="@{clubs/new}">About</a></li>
+    <li><a th:href="@{clubs/new}">LogIn</a></li>
+    <li><a th:href="@{clubs/new}">Register</a></li>
   </ul>
 </nav>
 
