@@ -54,6 +54,16 @@
       text-decoration: none;
       color: black;
     }
+
+    .search-bar-container {
+      display: grid;
+      justify-content: center;
+      margin: 30px;
+    }
+
+    .clubs-container input {
+      width: 700px;
+    }
   </style>
 
 </head>
@@ -68,6 +78,11 @@
   <section layout:fragment="body">
     <h1>Clubs</h1>
 
+    <div class="search-bar-container">
+      <form th:action="@{/clubs/search}">
+        <input type="search" name="query" id="" placeholder="Search Clubs" aria-label="Search">
+      </form>
+    </div>
     <div class="clubs-container">
       <div th:each="club : ${clubs}" class="club-card">
         <div class="inner-club-container">
