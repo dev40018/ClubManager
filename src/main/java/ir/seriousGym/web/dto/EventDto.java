@@ -2,9 +2,11 @@ package ir.seriousGym.web.dto;
 
 import java.time.LocalDateTime;
 
-import groovy.transform.builder.Builder;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import ir.seriousGym.web.model.Club;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -16,8 +18,10 @@ public class EventDto {
   private Long id;
 
   private String name;
+  @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
   private LocalDateTime startTime;
-  private LocalDateTime endtTime;
+  @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+  private LocalDateTime endTime;
   private String type; // consider make it as an ENUM
   private String photoUrl;
 

@@ -1,0 +1,44 @@
+package ir.seriousGym.web.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import ir.seriousGym.web.dto.EventDto;
+import ir.seriousGym.web.model.Event;
+import ir.seriousGym.web.service.EventService;
+
+@Controller
+public class EventController {
+
+  private final EventService eventService;
+
+  public EventController(EventService eventService) {
+    this.eventService = eventService;
+  }
+
+
+  @GetMapping("/events/{clubId}/new")
+  public String createEventForm(
+    @PathVariable("clubId") long clubId,
+    Model model)
+    {
+    Event event = new Event();
+    model.addAttribute("clubId", clubId);
+    model.addAttribute("event", event);
+    return "events-create";
+
+  }
+  @PostMapping("/events/{clubId}")
+  public String createEvent(
+    @PathVariable("clubId") long clubId,
+    @ModelAttribute("event") EventDto eventDto,
+    Model model){
+    eventService.createEvent(clubId, eventDto);
+    return "redirect:/clubs/" + clubId;
+  }
+  
+}
