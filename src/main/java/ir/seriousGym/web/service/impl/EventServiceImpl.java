@@ -3,6 +3,7 @@ package ir.seriousGym.web.service.impl;
 import org.springframework.stereotype.Service;
 
 import ir.seriousGym.web.dto.EventDto;
+import static ir.seriousGym.web.mapper.EventMapper.mapToEvent;
 import ir.seriousGym.web.model.Club;
 import ir.seriousGym.web.model.Event;
 import ir.seriousGym.web.repository.ClubRepo;
@@ -32,19 +33,7 @@ public class EventServiceImpl implements EventService{
 
 
   }
-  private Event mapToEvent(EventDto eventDto){
-    Event event = Event.builder()
-    .id(eventDto.getId())
-    .name(eventDto.getName())
-    .startTime(eventDto.getStartTime())
-    .endTime(eventDto.getEndTime())
-    .photoUrl(eventDto.getPhotoUrl())
-    .createdOn(eventDto.getCreatedOn())
-    .type(eventDto.getType())
-    .updatedOn(eventDto.getUpdatedOn())
-    .build();
-    return event;
-  }
+
 
   
 }

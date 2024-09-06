@@ -1,6 +1,7 @@
 package ir.seriousGym.web.dto;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
@@ -19,5 +20,7 @@ public class ClubDto {
   private String content;
   private LocalDateTime createdOn;
   private LocalDateTime updateOn;
+
+  private List<EventDto> events;
 
 }

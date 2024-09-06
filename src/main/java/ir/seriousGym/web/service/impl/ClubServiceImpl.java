@@ -7,9 +7,13 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import ir.seriousGym.web.dto.ClubDto;
+import static ir.seriousGym.web.mapper.ClubMapper.mapToClub;
+import static ir.seriousGym.web.mapper.ClubMapper.mapToClubDto;
 import ir.seriousGym.web.model.Club;
 import ir.seriousGym.web.repository.ClubRepo;
 import ir.seriousGym.web.service.ClubService;
+
+
 
 @Service
 public class ClubServiceImpl implements ClubService {
@@ -29,31 +33,6 @@ public class ClubServiceImpl implements ClubService {
   }
 
 
-  // -- Mappers 
-  private ClubDto mapToClubDto(Club club){
-    ClubDto clubDto = ClubDto.builder()
-    .id(club.getId())
-    .title(club.getTitle())
-    .photoUrl(club.getPhotoUrl())
-    .content(club.getContent())
-    .createdOn(club.getCreatedOn())
-    .updateOn(club.getUpdateOn())
-    .build();
-    return clubDto;
-  }
-
-  private Club mapToClub(ClubDto clubDto){
-    Club club = Club.builder()
-    .id(clubDto.getId())
-    .title(clubDto.getTitle())
-    .photoUrl(clubDto.getPhotoUrl())
-    .content(clubDto.getContent())
-    .createdOn(clubDto.getCreatedOn())
-    .updateOn(clubDto.getUpdateOn())
-    .build();
-    return club;
-  }
-    // -- Mappers 
 
   @Override
   public Club saveClub(ClubDto clubDto) {
