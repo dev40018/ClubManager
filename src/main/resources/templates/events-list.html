@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layout}">
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Events</title>
+
+  <style>
+    * {
+      font-family: "Inter";
+    }
+
+
+
+    img {
+      width: 360px;
+      height: 240px;
+
+    }
+
+    .clubs-container {
+      display: grid;
+      justify-content: space-evenly;
+      grid-template-columns: 1fr 1fr;
+    }
+
+
+
+    .club-card {
+      padding: 20px;
+      border: 2px solid grey;
+      border-radius: 10px;
+      margin: 10px;
+      width: 700px;
+    }
+
+    #edit-btn {
+      background-color: black;
+      border-radius: 1px;
+      padding: 5px 10px;
+      color: aliceblue;
+      text-decoration: none;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    h1 a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .search-bar-container {
+      display: grid;
+      justify-content: center;
+      margin: 30px;
+    }
+
+    .clubs-container input {
+      width: 700px;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <section layout:fragment="body">
+    <h1>Events</h1>
+
+
+    <div class="clubs-container">
+      <div th:each="event : ${events}" class="club-card">
+        <div class="inner-club-container">
+          <h1><a th:text="${event.name}" href=""></a></h1>
+          <img th:src="${event.photoUrl}" alt="" class="Club">
+          <p id="club-content" th:text="${event.startTime}"></p>
+          <p id="club-content" th:text="${event.endTime}"></p>
+        </div>
+        <!-- <a id="edit-btn" th:href="">Detail</a>
+        <a id="edit-btn" th:href="">Edit</a> -->
+      </div>
+    </div>
+
+  </section>
+
+</body>
+
+</html>

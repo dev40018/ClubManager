@@ -1,9 +1,13 @@
 package ir.seriousGym.web.service.impl;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Service;
 
 import ir.seriousGym.web.dto.EventDto;
 import static ir.seriousGym.web.mapper.EventMapper.mapToEvent;
+import static ir.seriousGym.web.mapper.EventMapper.mapToEventDto;
 import ir.seriousGym.web.model.Club;
 import ir.seriousGym.web.model.Event;
 import ir.seriousGym.web.repository.ClubRepo;
@@ -34,6 +38,10 @@ public class EventServiceImpl implements EventService{
 
   }
 
+  @Override
+  public List<EventDto> findAllEvents() {
+    List<Event> events = eventRepo.findAll();
+    return events.stream().map(event -> mapToEventDto(event)).collect(Collectors.toList());
+  }
 
-  
 }

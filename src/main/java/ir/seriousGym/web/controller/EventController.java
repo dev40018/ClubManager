@@ -1,5 +1,7 @@
 package ir.seriousGym.web.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +22,12 @@ public class EventController {
     this.eventService = eventService;
   }
 
+  @GetMapping("/events")
+  public String showAllEvents(Model model){
+    List<EventDto> events = eventService.findAllEvents();
+    model.addAttribute("events", events);
+    return "events-list";
+  }
 
   @GetMapping("/events/{clubId}/new")
   public String createEventForm(
