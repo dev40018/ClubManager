@@ -26,6 +26,17 @@
       gap: 3rem;
       margin: 130px;
     }
+
+    .event-card-container {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .event-card {
+      margin: 10px;
+      font-size: 20px;
+    }
   </style>
 </head>
 
@@ -54,7 +65,10 @@
     <div class="Event-Container">
       <h2>Events:</h2>
       <div class="event-card-container">
-
+        <div th:each="event : ${club.events}" class="event-card">
+          <img th:src="${event.photoUrl}" alt="">
+          <h3 th:text="${event.name}"></h3>
+        </div>
       </div>
 
     </div>

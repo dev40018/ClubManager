@@ -1,6 +1,10 @@
 package ir.seriousGym.web.mapper;
 
+
+import java.util.stream.Collectors;
+
 import ir.seriousGym.web.dto.ClubDto;
+import static ir.seriousGym.web.mapper.EventMapper.mapToEventDto;
 import ir.seriousGym.web.model.Club;
 
 public class ClubMapper {
@@ -13,6 +17,7 @@ public class ClubMapper {
     .content(club.getContent())
     .createdOn(club.getCreatedOn())
     .updateOn(club.getUpdateOn())
+    .events(club.getEvents().stream().map(event -> mapToEventDto(event)).collect(Collectors.toList()))
     .build();
     return clubDto;
   }
