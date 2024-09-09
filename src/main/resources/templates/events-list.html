@@ -83,6 +83,7 @@
           <p id="club-content" th:text="${event.endTime}"></p>
         </div>
         <a class="btn" th:href="@{/events/{eventId}(eventId=${event.id})}">Learn More</a>
+        <a class="btn" th:href="@{/events/{eventId}/edit(eventId=${event.id})}">Edit</a>
 
       </div>
     </div>
