@@ -28,14 +28,14 @@ public class ClubController {
 
   @GetMapping("/clubs")
   // Model will allow us to put stuff on webpage
-  public String listAllClubs(Model model){
+  public String listAllClubs(Model model) {
     List<ClubDto> clubs = clubService.findAllClubs();
     model.addAttribute("clubs", clubs);
     return "clubs-list";
   }
 
   @GetMapping("/clubs/new")
-  public String createClubForm(Model model){
+  public String createClubForm(Model model) {
     Club club = new Club();
     model.addAttribute("club", club);
     return "create-clubs";
@@ -43,9 +43,9 @@ public class ClubController {
 
   @PostMapping("/clubs/new")
   public String saveClub(@Valid @ModelAttribute("club") ClubDto clubDto,
-  BindingResult result,
-  Model model){
-    if(result.hasErrors()){
+      BindingResult result,
+      Model model) {
+    if (result.hasErrors()) {
       model.addAttribute("club", clubDto);
       return "create-clubs";
     }
@@ -54,17 +54,19 @@ public class ClubController {
   }
 
   @GetMapping("/clubs/{clubId}/edit")
-  public String editClubForm(@PathVariable("clubId") long clubId, Model model){
+  public String editClubForm(@PathVariable("clubId") long clubId, Model model) {
     ClubDto club = clubService.findClubById(clubId);
     model.addAttribute("club", club);
     return "clubs-edit";
   }
+
   @PostMapping("/clubs/{clubId}/edit")
-  //@Valid would trigger constraints that exists in ClubDto
+  // @Valid would trigger constraints that exists in ClubDto
   public String updateClub(@PathVariable("clubId") long clubId,
-   @Valid @ModelAttribute("club") ClubDto clubDto,
-   BindingResult result){
-    if(result.hasErrors()){
+      @Valid @ModelAttribute("club") ClubDto clubDto, Model model,
+      BindingResult result) {
+    if (result.hasErrors()) {
+      model.addAttribute("club", clubDto);
       return "clubs-edit";
     }
     clubDto.setId(clubId);
@@ -74,24 +76,25 @@ public class ClubController {
 
   @GetMapping("/clubs/{clubId}")
   public String showClubDetail(@PathVariable("clubId") long clubId,
-  Model model){
+      Model model) {
     ClubDto clubDto = clubService.findClubById(clubId);
     model.addAttribute("club", clubDto);
     return "clubs-detail";
   }
+
   @GetMapping("/clubs/{clubId}/delete")
-  public String deleteClub(@PathVariable("clubId") long  clubId){
+  public String deleteClub(@PathVariable("clubId") long clubId) {
     clubService.deleteClub(clubId);
     return "redirect:/clubs";
   }
 
   @GetMapping("/clubs/search")
   public String searchClub(
-    @RequestParam(value="query") String query,
-    Model model){
-      List<ClubDto> clubs = clubService.searchClubs(query);
-      model.addAttribute("clubs", clubs);
-      return "clubs-list";
-    }
-  
+      @RequestParam(value = "query") String query,
+      Model model) {
+    List<ClubDto> clubs = clubService.searchClubs(query);
+    model.addAttribute("clubs", clubs);
+    return "clubs-list";
+  }
+
 }

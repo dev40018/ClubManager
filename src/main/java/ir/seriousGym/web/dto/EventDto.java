@@ -18,9 +18,9 @@ public class EventDto {
   private Long id;
 
   private String name;
-  @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+  @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
   private LocalDateTime startTime;
-  @DateTimeFormat(pattern="yyyy-MM-dd'T'HH:mm")
+  @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
   private LocalDateTime endTime;
   private String type; // consider make it as an ENUM
   private String photoUrl;
@@ -28,7 +28,6 @@ public class EventDto {
   private LocalDateTime createdOn;
 
   private LocalDateTime updatedOn;
-
 
   private Club club;
 }

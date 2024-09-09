@@ -15,10 +15,11 @@ import ir.seriousGym.web.repository.EventRepo;
 import ir.seriousGym.web.service.EventService;
 
 @Service
-public class EventServiceImpl implements EventService{
+public class EventServiceImpl implements EventService {
 
   private final EventRepo eventRepo;
   private final ClubRepo clubRepo;
+
   public EventServiceImpl(EventRepo eventRepo, ClubRepo clubRepo) {
     this.eventRepo = eventRepo;
     this.clubRepo = clubRepo;
@@ -26,15 +27,13 @@ public class EventServiceImpl implements EventService{
 
   @Override
   public void createEvent(long clubId, EventDto eventDto) {
-    //first we are going to find the club to insert the events in it
+    // first we are going to find the club to insert the events in it
     Club club = clubRepo.findById(clubId).get();
-    // Repo methods only works with Event 
+    // Repo methods only works with Event
     Event event = mapToEvent(eventDto);
 
     event.setClub(club);
     eventRepo.save(event);
-
-
 
   }
 
@@ -48,6 +47,12 @@ public class EventServiceImpl implements EventService{
   public EventDto findEventById(long eventId) {
     Event event = eventRepo.findById(eventId).get();
     return mapToEventDto(event);
+  }
+
+  @Override
+  public void updateEvent(EventDto eventDto) {
+    Event event = mapToEvent(eventDto);
+    eventRepo.save(event);
   }
 
 }

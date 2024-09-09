@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,6 +14,7 @@ import ir.seriousGym.web.dto.ClubDto;
 import ir.seriousGym.web.dto.EventDto;
 import ir.seriousGym.web.model.Event;
 import ir.seriousGym.web.service.EventService;
+import jakarta.validation.Valid;
 
 @Controller
 public class EventController {
@@ -53,8 +55,12 @@ public class EventController {
   @PostMapping("/events/{clubId}")
   public String createEvent(
       @PathVariable("clubId") long clubId,
-      @ModelAttribute("event") EventDto eventDto,
+      @ModelAttribute("event") EventDto eventDto, BindingResult result,
       Model model) {
+    if (result.hasErrors()) {
+      model.addAttribute("event", eventDto);
+      return "create-clubs";
+    }
     eventService.createEvent(clubId, eventDto);
     return "redirect:/clubs/" + clubId;
   }
@@ -65,6 +71,23 @@ public class EventController {
     EventDto eventDto = eventService.findEventById(eventId);
     model.addAttribute("event", eventDto);
     return "event-edit";
+  }
+
+  @PostMapping("/events/{eventId}/edit")
+  // @Valid would trigger constraints that exists in ClubDto
+  public String updateEvent(@PathVariable("eventId") long eventId,
+      @Valid @ModelAttribute("event") EventDto eventDto,
+      BindingResult result,
+      Model model) {
+    if (result.hasErrors()) {
+      model.addAttribute("event", eventDto);
+      return "event-edit";
+    }
+    EventDto eventDto1 = eventService.findEventById(eventId); // this is the lazy loading way
+    eventDto.setId(eventId);
+    eventDto.setClub(eventDto1.getClub()); // this is the lazy loading way
+    eventService.updateEvent(eventDto);
+    return "redirect:/events";
   }
 
 }
