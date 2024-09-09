@@ -81,6 +81,8 @@
           <img th:src="${event.photoUrl}" alt="" class="Club">
           <p id="club-content" th:text="${event.startTime}"></p>
           <p id="club-content" th:text="${event.endTime}"></p>
+          <p>Available at club: <span th:text="${event.club.title}"></span></p>
+
         </div>
         <a class="btn" th:href="@{/events/{eventId}(eventId=${event.id})}">Learn More</a>
         <a class="btn" th:href="@{/events/{eventId}/edit(eventId=${event.id})}">Edit</a>

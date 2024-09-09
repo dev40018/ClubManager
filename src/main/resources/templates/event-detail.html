@@ -58,6 +58,7 @@
         <p>Event ends at: <span th:text="${event.endTime}"></span></p>
         <p>Created at: <span th:text="${event.createdOn}"></span></p>
       </div>
+      <a class="btn" th:href="@{/events/{eventId}/delete(eventId=${event.id})}">Delete</a>
     </div>
 
   </section>

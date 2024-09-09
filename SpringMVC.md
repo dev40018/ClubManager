@@ -92,3 +92,5 @@ turning FORM into JSON
 
 ## List/Detail Pattern
 ## Like Vs Contains in SQL performance
+
+## CheckOut soft delete
