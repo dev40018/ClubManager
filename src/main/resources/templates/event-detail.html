@@ -46,32 +46,18 @@
     <header>
       <div class="header-container">
         <div class="text-center">
-          <h1 th:text="${club.title}"></h1>
-          <p>Welcome to This Club.</p>
+          <h1 th:text="${event.name}"></h1>
+          <p>Welcome to This Event.</p>
         </div>
       </div>
     </header>
     <div class="main-section-container">
-      <a href=""><img th:src="${club.photoUrl}" alt=""></a>
-      <div class="clubDetail-container">
-        <div th:text="${club.createdOn}"></div>
-        <h3>About This Running Club:</h3>
-        <p th:text="${club.content}"></p>
-        <a class="btn" th:href="@{/clubs/{clubId}/delete(clubId=${club.id})}">Delete</a>
-        <a class="btn" th:href="@{/events/{clubId}/new(clubId=${club.id})}">Create Event</a>
+      <a href=""><img th:src="${event.photoUrl}" alt=""></a>
+      <div class="detail-container">
+        <p>Event starts at: <span th:text="${event.startTime}"></span></p>
+        <p>Event ends at: <span th:text="${event.endTime}"></span></p>
+        <p>Created at: <span th:text="${event.createdOn}"></span></p>
       </div>
-    </div>
-
-    <div class="Event-Container">
-      <h2>Events:</h2>
-      <div class="event-card-container">
-        <div th:each="event : ${club.events}" class="event-card">
-          <img th:src="${event.photoUrl}" alt="">
-          <h3 th:text="${event.name}"></h3>
-          <a class="btn" th:href="@{/events/{eventId}(eventId=${event.id})}">Learn More</a>
-        </div>
-      </div>
-
     </div>
 
   </section>
