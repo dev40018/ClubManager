@@ -94,3 +94,5 @@ turning FORM into JSON
 ## Like Vs Contains in SQL performance
 
 ## CheckOut soft delete
+
+NOTE: use generation Type Sequence and try to customize it
