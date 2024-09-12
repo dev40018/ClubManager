@@ -33,5 +33,13 @@ public class UserServiceImpl implements UserService {
     user.setRoles(Arrays.asList(role));
     userRepo.save(user);
   }
+  @Override
+  public UserEntity findByEmail(String email) {
+    return userRepo.findByEmail(email);
+  }
+  @Override
+  public UserEntity findByUsername(String username) {
+    return userRepo.findByUsername(username);
+  }
   
 }

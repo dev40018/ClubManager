@@ -77,7 +77,9 @@
 
   <section layout:fragment="body">
     <h1>Clubs</h1>
-
+    <div th:if="@{param.success}">
+      Sign up Successfully
+    </div>
     <div class="search-bar-container">
       <form th:action="@{/clubs/search}">
         <input type="search" name="query" id="" placeholder="Search Clubs" aria-label="Search">
