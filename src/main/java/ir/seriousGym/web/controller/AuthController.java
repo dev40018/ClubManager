@@ -25,28 +25,31 @@ public class AuthController {
     public String registerForm(Model model) {
         // Spring MVC offers to create such Object for avoiding error maybe reference error
         RegistrationDto registrationDto = new RegistrationDto();
-        model.addAttribute("user", registrationDto);
+        model.addAttribute("useri", registrationDto);
         return "register";
     }
 
     @PostMapping("/register/save")
-    public String postMethodName(@Valid @ModelAttribute("user")RegistrationDto user, Model model, BindingResult result) {
+    public String saveUser( Model model, @ModelAttribute("useri") @Valid RegistrationDto user,
+    BindingResult result) {
+
         // Checking By Email if there is already an existing User with that email
         UserEntity existingUserByEmail = userService.findByEmail(user.getEmail());
         if(existingUserByEmail != null && 
-           existingUserByEmail.getEmail() != null &&
-           !existingUserByEmail.getEmail().isEmpty()){
-            result.rejectValue("email", "problem with email");
-           }
+        existingUserByEmail.getEmail() != null &&
+        !existingUserByEmail.getEmail().isEmpty()){
+            return "redirect:/register?fail";
+        }
         // Checking By Username if there is already an existing User with that Username
         UserEntity existingUserByUsername = userService.findByUsername(user.getUsername());
         if(existingUserByUsername != null && 
-          existingUserByUsername.getUsername() != null &&
-          !existingUserByUsername.getUsername().isEmpty()){
-            result.rejectValue("username", "problem with username");
+        existingUserByUsername.getUsername() != null &&
+        !existingUserByUsername.getUsername().isEmpty()){
+            return "redirect:/register?fail";
         }
         if(result.hasErrors()){
-            model.addAttribute("user", user);
+            model.addAttribute("useri", user);
+            return "register";
         }
         userService.saveUser(user);
         return "redirect:/clubs?success";

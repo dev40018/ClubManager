@@ -14,11 +14,14 @@ public class RegistrationDto {
 
     private Long id;
 
-    @NotEmpty(message="should insert Username")
+    @NotEmpty(message="Insert Username")
     private String username;
-    @NotEmpty(message="should insert password")
+
+    @NotEmpty(message="Insert Password")
     private String password;
-    @NotEmpty(message="should insert email")
+
+    @NotEmpty(message="Insert Email")
     private String email;
+    
     private List<Role> roles = new ArrayList<>();
 }
