@@ -60,9 +60,9 @@ public class AuthController {
         return "redirect:/clubs?success";
     }
 
-    @GetMapping("/logini")
+    @GetMapping("/login")
     public String getLoginForm() {
-        return "clubs-list.html";
+        return "loginForm.html";
     }
     
     
