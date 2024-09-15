@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import ir.seriousGym.web.dto.ClubDto;
 import ir.seriousGym.web.model.Club;
+import ir.seriousGym.web.model.UserEntity;
+import ir.seriousGym.web.security.SecurityUtil;
 import ir.seriousGym.web.service.ClubService;
+import ir.seriousGym.web.service.UserService;
 import jakarta.validation.Valid;
 
 //@RestController its Only For RestAPI, doesn't works with views
@@ -21,15 +24,24 @@ import jakarta.validation.Valid;
 public class ClubController {
 
   private final ClubService clubService;
+  private final UserService userService;
 
-  public ClubController(ClubService clubService) {
+  public ClubController(ClubService clubService, UserService userService) {
     this.clubService = clubService;
+    this.userService = userService;
   }
 
   @GetMapping("/clubs")
   // Model will allow us to put stuff on webpage
   public String listAllClubs(Model model) {
+    UserEntity user = new UserEntity();
     List<ClubDto> clubs = clubService.findAllClubs();
+    String username = SecurityUtil.getUserBySession();
+    if(username != null){
+      user = userService.findByUsername(username);
+      model.addAttribute("user", user);
+    }
+    model.addAttribute("user", user);
     model.addAttribute("clubs", clubs);
     return "clubs-list";
   }

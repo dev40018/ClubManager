@@ -94,7 +94,9 @@
           <p id="club-content" th:text="${club.content}"></p>
         </div>
         <a id="edit-btn" th:href="@{/clubs/{clubId}(clubId=${club.id})}">Detail</a>
-        <a id="edit-btn" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
+        <div th:if="${user.id} == ${club.createdBy.id}"> <!--createdBy is an UserEntity obj which contains id-->
+          <a id="edit-btn" th:href="@{/clubs/{clubId}/edit(clubId=${club.id})}">Edit</a>
+        </div>
       </div>
     </div>
 
