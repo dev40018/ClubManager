@@ -28,9 +28,13 @@ public class AuthController {
         model.addAttribute("useri", registrationDto);
         return "register";
     }
-
+    /**
+     * If you annotate a parameter with @Valid, Spring will validate 
+     * that parameter and populate the BindingResult with any validation errors.
+     * BindingResult Must come right after validation Object
+     */
     @PostMapping("/register/save")
-    public String saveUser( Model model, @ModelAttribute("useri") @Valid RegistrationDto user,
+    public String saveUser(  Model model, @ModelAttribute("useri") @Valid RegistrationDto user,
     BindingResult result) {
 
         // Checking By Email if there is already an existing User with that email

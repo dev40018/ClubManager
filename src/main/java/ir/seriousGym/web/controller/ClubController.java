@@ -60,8 +60,8 @@ public class ClubController {
 
   @PostMapping("/clubs/{clubId}/edit")
   // @Valid would trigger constraints that exists in ClubDto
-  public String updateClub(@PathVariable("clubId") long clubId,
-      @Valid @ModelAttribute("club") ClubDto clubDto, Model model,
+  public String updateClub(@PathVariable("clubId") long clubId, Model model,
+      @Valid @ModelAttribute("club") ClubDto clubDto, 
       BindingResult result) {
     if (result.hasErrors()) {
       model.addAttribute("club", clubDto);
