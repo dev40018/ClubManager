@@ -13,21 +13,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import ir.seriousGym.web.dto.ClubDto;
 import ir.seriousGym.web.dto.EventDto;
 import ir.seriousGym.web.model.Event;
+import ir.seriousGym.web.model.UserEntity;
+import ir.seriousGym.web.security.SecurityUtil;
 import ir.seriousGym.web.service.EventService;
+import ir.seriousGym.web.service.UserService;
 import jakarta.validation.Valid;
 
 @Controller
 public class EventController {
 
   private final EventService eventService;
+  private final UserService userService;
 
-  public EventController(EventService eventService) {
+  public EventController(EventService eventService, UserService userService) {
     this.eventService = eventService;
+    this.userService = userService;
   }
 
   @GetMapping("/events")
   public String showAllEvents(Model model) {
+    UserEntity user = new UserEntity();
     List<EventDto> events = eventService.findAllEvents();
+    String username = SecurityUtil.getUserBySession();
+    if(username != null){
+      user = userService.findByUsername(username);
+      model.addAttribute("user", user);
+    }
+    model.addAttribute("user", user);
     model.addAttribute("events", events);
     return "events-list";
   }
@@ -36,7 +48,15 @@ public class EventController {
   public String showEventsDetail(
       @PathVariable("eventId") long eventId,
       Model model) {
+    UserEntity user = new UserEntity();
     EventDto eventDto = eventService.findEventById(eventId);
+    String username = SecurityUtil.getUserBySession();
+    if(username != null){
+      user = userService.findByUsername(username);
+      model.addAttribute("user", user);
+    }
+    model.addAttribute("club", eventDto);
+    model.addAttribute("user", user);
     model.addAttribute("event", eventDto);
     return "event-detail";
   }

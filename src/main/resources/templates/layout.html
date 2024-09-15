@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/" xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout"
+  xmlns:sec="https://www.thymeleaf.org/">
 
 <head>
   <meta charset="UTF-8">
@@ -11,13 +12,16 @@
 </head>
 
 <nav>
+  <!-- <img th:src="@{/assets/runGroup.png}" alt=""> -->
   <ul>
     <li><a th:href="@{/clubs}">Home</a></li>
+    <li><a th:href="@{/clubs}">Clubs</a></li>
+    <li><a th:href="@{/events}">Events</a></li>
     <li><a th:href="@{/clubs/new}">Create</a></li>
     <li><a th:href="@{clubs/new}">About</a></li>
-    <li><a th:href="@{/login}">LogIn</a></li>
-    <li><a th:href="@{/register}">Register</a></li>
-    <li><a th:href="@{/logout}">LogOut</a></li>
+    <li><a sec:authorize="!isAuthenticated()" th:href="@{/login}">LogIn</a></li>
+    <li><a sec:authorize="!isAuthenticated()" th:href="@{/register}">Register</a></li>
+    <li><a sec:authorize="isAuthenticated()" th:href="@{/logout}">LogOut</a></li>
   </ul>
 </nav>
 

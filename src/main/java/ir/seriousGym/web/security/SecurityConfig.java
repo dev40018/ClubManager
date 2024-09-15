@@ -38,6 +38,8 @@ public class SecurityConfig {
                                 "/register",
                                 "/clubs",
                                 "/clubs/{clubId}",
+                                "/events",
+                                "/events/{eventId}",
                                 "/register/**",
                                 "/css/**",
                                 "/js/**",

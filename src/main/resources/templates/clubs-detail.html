@@ -72,6 +72,9 @@
           <img th:src="${event.photoUrl}" alt="">
           <h3 th:text="${event.name}"></h3>
           <a class="btn" th:href="@{/events/{eventId}(eventId=${event.id})}">Learn More</a>
+          <div th:if="${user.id} == ${club.createdBy.id}"> <!--createdBy is an UserEntity obj which contains id-->
+            <a class="btn" th:href="@{/events/{eventId}/edit(eventId=${event.id})}">Edit</a>
+          </div>
         </div>
       </div>
 
