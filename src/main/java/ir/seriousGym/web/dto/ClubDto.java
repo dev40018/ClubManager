@@ -3,6 +3,7 @@ package ir.seriousGym.web.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import ir.seriousGym.web.model.UserEntity;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +21,7 @@ public class ClubDto {
   private String content;
   private LocalDateTime createdOn;
   private LocalDateTime updateOn;
+  private UserEntity createdBy;
 
   private List<EventDto> events;
 

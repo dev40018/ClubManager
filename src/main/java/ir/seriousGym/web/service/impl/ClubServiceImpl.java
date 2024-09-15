@@ -10,7 +10,10 @@ import ir.seriousGym.web.dto.ClubDto;
 import static ir.seriousGym.web.mapper.ClubMapper.mapToClub;
 import static ir.seriousGym.web.mapper.ClubMapper.mapToClubDto;
 import ir.seriousGym.web.model.Club;
+import ir.seriousGym.web.model.UserEntity;
 import ir.seriousGym.web.repository.ClubRepo;
+import ir.seriousGym.web.repository.UserRepo;
+import ir.seriousGym.web.security.SecurityUtil;
 import ir.seriousGym.web.service.ClubService;
 
 
@@ -19,9 +22,11 @@ import ir.seriousGym.web.service.ClubService;
 public class ClubServiceImpl implements ClubService {
 
   private final ClubRepo clubRepo;
+  private final UserRepo userRepo;
   
-  public ClubServiceImpl(ClubRepo clubRepo) {
+  public ClubServiceImpl(ClubRepo clubRepo, UserRepo userRepo) {
     this.clubRepo = clubRepo;
+    this.userRepo = userRepo;
   }
 
   // must change the method visibility to public for OverRiding
@@ -36,7 +41,11 @@ public class ClubServiceImpl implements ClubService {
 
   @Override
   public Club saveClub(ClubDto clubDto) {
+    // checking the session
+    String username =SecurityUtil.getUserBySession();
+    UserEntity user = userRepo.findByUsername(username);
     Club club = mapToClub(clubDto);
+    club.setCreatedBy(user);
     return clubRepo.save(club);
   }
 
@@ -50,7 +59,10 @@ public class ClubServiceImpl implements ClubService {
 
   @Override
   public void updateClub(ClubDto clubDto) {
+    String username =SecurityUtil.getUserBySession();
+    UserEntity user = userRepo.findByUsername(username);
     Club club = mapToClub(clubDto);
+    club.setCreatedBy(user);
     clubRepo.save(club);
   }
 

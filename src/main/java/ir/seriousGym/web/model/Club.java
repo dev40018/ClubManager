@@ -14,6 +14,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -41,6 +43,10 @@ public class Club {
 
   @UpdateTimestamp
   private LocalDateTime updateOn;
+
+  @ManyToOne
+  @JoinColumn(name="created_by", nullable=false)
+  private UserEntity createdBy;
 
   @OneToMany(mappedBy="club", cascade=CascadeType.REMOVE) // when parent is removed chile will be too
   private List<Event> events = new ArrayList<>();
