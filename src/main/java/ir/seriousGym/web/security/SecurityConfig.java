@@ -36,7 +36,7 @@ public class SecurityConfig {
                         .loginPage("/login")
                         .defaultSuccessUrl("/clubs")
                         .loginProcessingUrl("/login")
-                        .failureUrl("/login?error=true")
+                        .failureUrl("/login?error=true") // param.fail in loginForm.html
                         .permitAll()
                 )
                 .logout(

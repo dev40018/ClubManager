@@ -96,3 +96,9 @@ turning FORM into JSON
 ## CheckOut soft delete
 
 NOTE: use generation Type Sequence and try to customize it
+
+## UserDetailService(interface)
+it will get our user from database, turn it into userDetails Format  
+we use default authentication provider  
+all of them will be stored in security context which will allow logback in after you left the site when there is a alive session  
+(after each refresh you wont lose the login session)
