@@ -14,6 +14,7 @@ import jakarta.validation.Valid;
 
 
 
+
 @Controller
 public class AuthController {
     private final UserService userService;
@@ -58,6 +59,12 @@ public class AuthController {
         userService.saveUser(user);
         return "redirect:/clubs?success";
     }
+
+    @GetMapping("/logini")
+    public String getLoginForm() {
+        return "clubs-list.html";
+    }
+    
     
     
     
