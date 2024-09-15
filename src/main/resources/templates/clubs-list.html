@@ -92,6 +92,7 @@
           <h1><a th:text="${club.title}" href=""></a></h1>
           <img th:src="${club.photoUrl}" alt="" class="Club">
           <p id="club-content" th:text="${club.content}"></p>
+          <p>create by @<span th:text="${club.createdBy.username}"></span></p>
         </div>
         <a id="edit-btn" th:href="@{/clubs/{clubId}(clubId=${club.id})}">Detail</a>
         <div th:if="${user.id} == ${club.createdBy.id}"> <!--createdBy is an UserEntity obj which contains id-->

@@ -37,6 +37,7 @@ public class SecurityConfig {
                                 "/login",
                                 "/register",
                                 "/clubs",
+                                "/clubs/{clubId}",
                                 "/register/**",
                                 "/css/**",
                                 "/js/**",

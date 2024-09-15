@@ -87,7 +87,14 @@ public class ClubController {
   @GetMapping("/clubs/{clubId}")
   public String showClubDetail(@PathVariable("clubId") long clubId,
       Model model) {
+    UserEntity user = new UserEntity();
     ClubDto clubDto = clubService.findClubById(clubId);
+    String username = SecurityUtil.getUserBySession();
+    if(username != null){
+      user = userService.findByUsername(username);
+      model.addAttribute("user", user);
+    }
+    model.addAttribute("user", user);
     model.addAttribute("club", clubDto);
     return "clubs-detail";
   }
