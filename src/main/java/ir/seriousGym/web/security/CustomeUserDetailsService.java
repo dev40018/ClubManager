@@ -7,14 +7,14 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import ir.seriousGym.web.model.UserEntity;
 import ir.seriousGym.web.repository.UserRepo;
-
+@Service
 public class CustomeUserDetailsService implements UserDetailsService{
     private final UserRepo userRepo;
     
-
     public CustomeUserDetailsService(UserRepo userRepo) {
         this.userRepo = userRepo;
     }

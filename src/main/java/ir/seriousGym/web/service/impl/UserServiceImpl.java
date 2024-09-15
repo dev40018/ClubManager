@@ -2,6 +2,7 @@ package ir.seriousGym.web.service.impl;
 
 import java.util.Arrays;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import ir.seriousGym.web.dto.RegistrationDto;
@@ -15,9 +16,11 @@ import ir.seriousGym.web.service.UserService;
 public class UserServiceImpl implements UserService {
   private final UserRepo userRepo;
   private final RoleRepo roleRepo;
-  public UserServiceImpl(UserRepo userRepo, RoleRepo roleRepo) {
+  private final PasswordEncoder passwordEncoder;
+  public UserServiceImpl(UserRepo userRepo, RoleRepo roleRepo, PasswordEncoder passwordEncoder) {
     this.userRepo = userRepo;
     this.roleRepo = roleRepo;
+    this.passwordEncoder = passwordEncoder;
   }
   @Override
   public void saveUser(RegistrationDto registrationDto) {
@@ -25,7 +28,8 @@ public class UserServiceImpl implements UserService {
     UserEntity user = new UserEntity();
     user.setUsername(registrationDto.getUsername());
     user.setEmail(registrationDto.getEmail());
-    user.setPassword(registrationDto.getPassword());
+    // encoding the password in BCryptFormat
+    user.setPassword(passwordEncoder.encode(registrationDto.getPassword()));
     // then we need to Create a Role to Populate our user with it
     // you can make a user Admin by editing it within DB DML
     Role role = roleRepo.findByName("USER");
